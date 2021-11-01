@@ -5,8 +5,8 @@ using namespace std;
 class Person
 {
 protected:
-    string name;
-    int age, address, mui1, mui2;
+    string name, address;
+    int age, mui1, mui2;
 
 public:
     virtual void Nhap();
@@ -43,20 +43,22 @@ void Person::Nhap()
     fflush(stdin);
     cout << "Nhap ho ten: ";
     getline(cin, name);
+    cout << "Nhap noi o hien tai: ";
+    getline(cin,address);
     do
     {
-        cout << "Nhap noi o hien tai: ";
-        cin >> address;
-        if (address < 0 || address > 1)
-            cout << "Khong hop le vui long nhap lai" << endl;
-    } while (address < 0 || address > 1);
-    cout << "************Tinh trang tiem chung********" << endl;
+    	cout << "Tuoi:";
+    	cin >> age;
+    	if(age < 18 || age > 150)
+    		cout << "Khong hop le de tiem va vui lop nhap lai:" << endl;
+	}
+	while (age < 18 || age > 150);
     do
     {
         cout << "Mui 1: ";
         cin >> mui1;
         if (mui1 < 0 || mui1 > 1)
-            cout << "Khong hop le vui long nhap lai" << endl;
+            cout << "Khong hop le va vui long nhap lai" << endl;
     } while (mui1 < 0 || mui1 > 1);
 
     if (mui1 == 1)
@@ -66,7 +68,7 @@ void Person::Nhap()
             cout << "Mui 2: ";
             cin >> mui2;
             if (mui2 < 0 || mui2 > 1)
-                cout << "Khong hop le vui long nhap lai" << endl;
+                cout << "Khong hop le va vui long nhap lai" << endl;
         } while (mui2 < 0 || mui2 > 1);
     }
     else
@@ -77,11 +79,8 @@ void Person::Xuat()
 {
     fflush(stdin);
     cout << "Ho ten: " << name << endl;
-    cout << "Noi o hien tai: ";
-    if (address == 0)
-        cout << "Que" << endl;
-    else if (address == 1)
-        cout << "Thanh pho" << endl;
+    cout << "Noi o hien tai: " << address << endl;
+    cout << "So tuoi:" << age << endl;
     cout << "************Tinh trang tiem chung********" << endl;
     cout << "Mui 1: ";
     if (mui1 == 0)
@@ -110,9 +109,11 @@ void Student::Nhap()
 void Student::Tinhtrang()
 {
     if (mui1 == 1 && mui2 == 1)
-        cout << "On ap";
+        cout << "An toan";
+    else if(mui1 == 1 && mui2 ==0)
+    	cout << "Tam an toan.";
     else
-        cout << "Ko on";
+        cout << "Khong an toan";
 }
 
 void Student::Xuat()
