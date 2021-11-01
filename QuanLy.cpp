@@ -125,10 +125,46 @@ void Student::Xuat()
     Person::Xuat();
 }
 
+//teacher
+
+void Teacher::Nhap()
+{
+    fflush(stdin);
+    cout << "\nNhap ID giao vien (ID): ";
+    getline(cin, ID);
+    cout << "Day lop: ";
+    getline(cin, teach);
+    Person::Nhap();
+}
+
+void Teacher::Tinhtrang()
+{
+    if (mui1 == 1 && mui2 == 1)
+        cout << "An toan";
+    else if(mui1 == 1 && mui2 ==0)
+    	cout << "Tam an toan.";
+    else
+        cout << "Khong an toan";
+}
+
+void Teacher::Xuat()
+{
+    cout << endl
+         << "**********Thong tin giao vien************" << endl;
+    cout << "ID: " << ID << endl;
+    cout << "Lop: " << teach << endl;
+    Person::Xuat();
+}
+
+
 int main()
 {
     Student a;
     a.Nhap();
     a.Xuat();
     a.Tinhtrang();
+    Teacher b;
+    b.Nhap();
+    b.Xuat();
+    b.Tinhtrang();
 }
