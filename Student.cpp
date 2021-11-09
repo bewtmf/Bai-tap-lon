@@ -28,18 +28,19 @@ void Student::Nhap()
 void Student::Tinhtrang()
 {
     if (mui1 == 1 && mui2 == 1)
-        cout << "An toan";
-    else if (mui1 == 1 && mui2 == 0)
-        cout << "Tam an toan.";
+        cout << "			=> Tinh trang:An toan.";
+    else if(mui1 == 1 && mui2 ==0)
+    	cout << "			=> Tinh trang:Tam an toan.";
     else
-        cout << "Khong an toan";
+        cout << "			=> Tinh trang:Khong an toan";
 }
 
 void Student::Xuat()
 {
     cout << endl
-         << "**********Thong tin sinh vien************" << endl;
-    cout << "ID: " << ID << endl;
-    cout << "Lop: " << study << endl;
+         << "**********Thong tin sinh vien va tinh trang tiem chung************" << endl;
+    cout << "			-> ID: " << ID << endl;
+    cout << "			-> Lop: " << study << endl;
     Person::Xuat();
 }
+
