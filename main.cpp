@@ -3,7 +3,10 @@
 
 int main()
 {
-    quanly a;
-    a.DanhSach();
-    a.XuatDanhSach();
+    QLStudent a;
+    a.NhapDS();
+    a.XuatDS();
+    cout << "\nSap xep: " << endl;
+    a.SortByID();
+    a.DeleteByID();
 }

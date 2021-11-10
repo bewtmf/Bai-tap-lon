@@ -34,6 +34,8 @@ void Person::Nhap()
 
     cout << "*Ghi chu:" << endl;
     cout << "*****Nhap 0 neu chua tiem va nhap 1 neu da tiem ( nhap 1 den 8 de chon VACCINE)!*****" << endl;
+    cout << "(1)Vero cell\t(2) Pfizer\t(3) Astra Zecera\t(4)Abdala" << endl
+         << "(5) Spikevax\t(6) Hayat - Vax\t(7) SPUTNIK V\t(8) Janssen." << endl;
     do
     {
         cout << "-Mui 1: ";
@@ -46,8 +48,6 @@ void Person::Nhap()
     {
         do
         {
-            cout << "(1)Vero cell\t(2) Pfizer\t(3) Astra Zecera\t(4)Abdala" << endl
-                 << "(5) Spikevax\t(6) Hayat - Vax\t(7) SPUTNIK V\t(8) Janssen." << endl;
             cout << "-Ten VACCINE: ";
             cin >> tenvc1;
             if (tenvc1 < 1 || tenvc1 > 8)
@@ -64,8 +64,6 @@ void Person::Nhap()
         {
             do
             {
-                cout << "(1)Vero cell\t(2) Pfizer\t(3) Astra Zecera\t(4)Abdala" << endl
-                     << "(5) Spikevax\t(6) Hayat - Vax\t(7) SPUTNIK V\t(8) Janssen." << endl;
                 cout << "-Ten VACCINE: ";
                 cin >> tenvc2;
                 if (tenvc2 < 1 || tenvc2 > 8)
@@ -140,51 +138,6 @@ void Person::Xuat()
         cout << "\t\t\tChua tiem Vaccine!" << endl;
         dfColor();
     }
-    // if (tenvc1 == 1)
-    //     cout << "\t\t\t->Ten Vaccine: Vero cell." << endl;
-    // else if (tenvc1 == 2)
-    //     cout << "\t\t\t->Ten Vaccine: Pfizer." << endl;
-    // else if (tenvc1 == 3)
-    //     cout << "\t\t\t->Ten Vaccine: Astra Zecera." << endl;
-    // else if (tenvc1 == 4)
-    //     cout << "\t\t\t->Ten Vaccine: Abdala." << endl;
-    // else if (tenvc1 == 5)
-    //     cout << "\t\t\t->Ten Vaccine: Spikevax." << endl;
-    // else if (tenvc1 == 6)
-    //     cout << "\t\t\t->Ten Vaccine: Hayat-Vax." << endl;
-    // else if (tenvc1 == 7)
-    //     cout << "\t\t\t->Ten Vaccine: SPUTNIK V." << endl;
-    // else if (tenvc1 == 8)
-    //     cout << "\t\t\t->Ten Vaccine: Janssen." << endl;
-
-    //     cout << "\t\t\t-> Mui 2:";
-    //     if (mui2 == 0)
-    //     {
-    //         TextColor(4);
-    //         cout << "Chua tiem." << endl;
-    //         dfColor();
-    //     }
-    //     else if (mui2 == 1)
-    //     {
-    //         cout << "da tiem." << endl;
-    //     }
-    //     if (tenvc2 == 1)
-    //         cout << "\t\t\t->Ten Vaccine: Vero cell." << endl;
-    //     else if (tenvc2 == 2)
-    //         cout << "\t\t\t->Ten Vaccine: Pfizer." << endl;
-    //     else if (tenvc2 == 3)
-    //         cout << "\t\t\t->Ten Vaccine: Astra Zecera." << endl;
-    //     else if (tenvc2 == 4)
-    //         cout << "\t\t\t->Ten Vaccine: Abdala." << endl;
-    //     else if (tenvc2 == 5)
-    //         cout << "\t\t\t->Ten Vaccine: Spikevax." << endl;
-    //     else if (tenvc2 == 6)
-    //         cout << "\t\t\t->Ten Vaccine: Hayat-Vax." << endl;
-    //     else if (tenvc2 == 7)
-    //         cout << "\t\t\t->Ten Vaccine: SPUTNIK V." << endl;
-    //     else if (tenvc2 == 8)
-    //         cout << "\t\t\t->Ten Vaccine: Janssen." << endl;
-    // }
 
     if (mui2 == 1)
     {
@@ -249,19 +202,24 @@ void Person::Xuat()
 class Student : public Person
 {
 private:
-    string ID, study;
+    string study;
+    int ID;
 
 public:
     void Nhap();
     void Xuat();
     void Tinhtrang();
+    int getID()
+    {
+        return ID;
+    }
 };
 
 void Student::Nhap()
 {
-    fflush(stdin);
     cout << "-Nhap ID sinh vien (ID): ";
-    getline(cin, ID);
+    cin >> ID;
+    fflush(stdin);
     cout << "-Hoc lop: ";
     getline(cin, study);
     Person::Nhap();
@@ -290,7 +248,8 @@ void Student::Xuat()
 class Teacher : public Person
 {
 private:
-    string ID, teach;
+    string teach;
+    int ID;
 
 public:
     void Nhap();
@@ -300,10 +259,10 @@ public:
 
 void Teacher::Nhap()
 {
-    fflush(stdin);
     cout << "\n*********************" << endl;
     cout << "\n-Nhap ID giao vien (ID): ";
-    getline(cin, ID);
+    cin >> ID;
+    fflush(stdin);
     cout << "-Day lop: ";
     getline(cin, teach);
     Person::Nhap();
@@ -327,23 +286,27 @@ void Teacher::Xuat()
     cout << "\t\t\t-> Lop: " << teach << endl;
     Person::Xuat();
 }
-//Quan ly danh sach sinh vien, giang vien
-class quanly
+//Quan ly danh sach sinh vien
+class QLStudent
 {
 private:
-    vector<Person *> Arr;
+    vector<Student *> Arr;
 
 public:
-    void DanhSach();
-    void XuatDanhSach();
+    void NhapDS();
+    void XuatDS();
+    void SortByID();
+    void DeleteByID();
+    void SortByName();
+    void DeleteByName();
 };
 
-void quanly::DanhSach()
+void QLStudent::NhapDS()
 {
     int n;
     cout << "Nhap n:";
     cin >> n;
-    Person *sv;
+    Student *sv;
     for (int i = 0; i < n; i++)
     {
         sv = new Student;
@@ -352,8 +315,38 @@ void quanly::DanhSach()
     }
 }
 
-void quanly::XuatDanhSach()
+void QLStudent::XuatDS()
 {
     for (int i = 0; i < Arr.size(); i++)
         Arr.at(i)->Xuat();
+}
+
+void QLStudent::SortByID()
+{
+    for (int i = 0; i < Arr.size() - 1; i++)
+    {
+        for (int j = i + 1; j < Arr.size(); j++)
+            if (Arr.at(i)->getID() > Arr.at(j)->getID())
+            {
+                Student *temp = Arr.at(i);
+                Arr.at(i) = Arr.at(j);
+                Arr.at(j) = temp;
+            }
+    }
+    XuatDS();
+}
+
+void QLStudent::DeleteByID()
+{
+    int dID;
+    cout << "Nhap ID muon xoa: ";
+    cin >> dID;
+    for (int i = 0; i < Arr.size(); i++)
+    {
+        if (Arr.at(i)->getID() == dID)
+            delete (Arr.at(i));
+        else
+            cout << "Khong tim thay ID" << endl;
+    }
+    XuatDS();
 }
