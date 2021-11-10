@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "TextColor.h"
 using namespace std;
 
 // CLASS PERSON
@@ -22,21 +23,17 @@ void Person::Nhap()
     cout << "-Nhap ho ten: ";
     getline(cin, name);
     cout << "-Nhap noi o hien tai: ";
-    getline(cin,address);
+    getline(cin, address);
     do
     {
-    	cout << "-Tuoi:";
-    	cin >> age;
-    	if(age < 12 || age > 150)
-    		cout << "Khong hop le de tiem va vui lop nhap lai:" << endl;
-	}
-	while (age < 12 || age > 150);
-	
-	fflush(stdin);
-	cout << "*Ghi chu:" ;
-	cout << "\n-8 loai vac xin duoc cap phep o Vet Nam hien nay:";
-	cout << "\n(1)Vero cell, (2) Pfizer, (3) Astra Zecera, (4) Abdala, (5) Spikevax, (6) Hayat-Vax, (7) SPUTNIK V, (8) Janssen.";	
-	cout << "\n*****Nhap 0 neu chua tiem va nhap 1 neu da tiem ( nhap 1 den 8 de chon VACCINE)!*****" << endl;
+        cout << "-Tuoi:";
+        cin >> age;
+        if (age < 12 || age > 150)
+            cout << "Khong hop le de tiem va vui lop nhap lai:" << endl;
+    } while (age < 12 || age > 150);
+
+    cout << "*Ghi chu:" << endl;
+    cout << "*****Nhap 0 neu chua tiem va nhap 1 neu da tiem ( nhap 1 den 8 de chon VACCINE)!*****" << endl;
     do
     {
         cout << "-Mui 1: ";
@@ -44,17 +41,18 @@ void Person::Nhap()
         if (mui1 < 0 || mui1 > 1)
             cout << "Khong hop le va vui long nhap lai" << endl;
     } while (mui1 < 0 || mui1 > 1);
-		
-	do
-    {
-        cout << "-Ten VACCINE: ";
-        cin >> tenvc1;
-        if (tenvc1 < 1 || tenvc1 > 8)
-            cout << "Khong hop le va vui long nhap lai" << endl;
-    } while (tenvc1 < 1 || tenvc1 > 8);	
-	
+
     if (mui1 == 1)
     {
+        do
+        {
+            cout << "(1)Vero cell\t(2) Pfizer\t(3) Astra Zecera\t(4)Abdala" << endl
+                 << "(5) Spikevax\t(6) Hayat - Vax\t(7) SPUTNIK V\t(8) Janssen." << endl;
+            cout << "-Ten VACCINE: ";
+            cin >> tenvc1;
+            if (tenvc1 < 1 || tenvc1 > 8)
+                cout << "Khong hop le va vui long nhap lai" << endl;
+        } while (tenvc1 < 1 || tenvc1 > 8);
         do
         {
             cout << "-Mui 2: ";
@@ -62,22 +60,21 @@ void Person::Nhap()
             if (mui2 < 0 || mui2 > 1)
                 cout << "Khong hop le va vui long nhap lai" << endl;
         } while (mui2 < 0 || mui2 > 1);
+        if (mui2 == 1)
+        {
+            do
+            {
+                cout << "(1)Vero cell\t(2) Pfizer\t(3) Astra Zecera\t(4)Abdala" << endl
+                     << "(5) Spikevax\t(6) Hayat - Vax\t(7) SPUTNIK V\t(8) Janssen." << endl;
+                cout << "-Ten VACCINE: ";
+                cin >> tenvc2;
+                if (tenvc2 < 1 || tenvc2 > 8)
+                    cout << "Khong hop le va vui long nhap lai" << endl;
+            } while (tenvc2 < 1 || tenvc2 > 8);
+        }
     }
     else
         mui2 == 0;
-        
-    if (mui2 == 1)
-	{    
-    	do
-    	{
-        	cout << "-Ten VACCINE: ";
-        	cin >> tenvc2;
-        	if (tenvc2 < 1 || tenvc2 > 8)
-    			cout << "Khong hop le va vui long nhap lai" << endl;
-    	} while (tenvc2 < 1 || tenvc2 > 8);
-	}
-	else 
-		mui2 == 0;
 }
 
 void Person::Xuat()
@@ -86,50 +83,166 @@ void Person::Xuat()
     cout << "\t\t\t-> Ho ten:" << name << endl;
     cout << "\t\t\t-> Noi o hien tai:" << address << endl;
     cout << "\t\t\t-> So tuoi:" << age << endl;
-    if (mui1 == 0)
-        cout << "\nChua tiem." << endl;
-    else if (mui1 == 1)
-        cout << "\t\t\t-> Mui 1:Da tiem." << endl;
-        
-    if (tenvc1 == 1)
-    	cout << "\t\t\t->Ten Vaccine: Vero cell."  << endl;
-    else if(tenvc1 == 2)
-		cout << "\t\t\t->Ten Vaccine: Pfizer."	<< endl;
-	else if(tenvc1 == 3)
-		cout << "\t\t\t->Ten Vaccine: Astra Zecera."	<< endl;
-	else if(tenvc1 == 4)
-		cout << "\t\t\t->Ten Vaccine: Abdala."	<< endl;
-	else if(tenvc1 == 5)
-		cout << "\t\t\t->Ten Vaccine: Spikevax."	<< endl;
-	else if(tenvc1 == 6)
-		cout << "\t\t\t->Ten Vaccine: Hayat-Vax."	<< endl;
-	else if(tenvc1 == 7)
-		cout << "\t\t\t->Ten Vaccine: SPUTNIK V."	<< endl;
-	else if(tenvc1 == 8)
-		cout << "\t\t\t->Ten Vaccine: Janssen."	<< endl;	
-    	
-    cout << "\t\t\t-> Mui 2:";
-    if (mui2 == 0)
-        cout << "chua tiem." << endl;
-    else if (mui2 == 1)
-        cout << "da tiem." << endl;
-    
-    if (tenvc2 == 1)
-    	cout << "\t\t\t->Ten Vaccine: Vero cell."  << endl;
-    else if(tenvc2 == 2)
-		cout << "\t\t\t->Ten Vaccine: Pfizer."	<< endl;
-	else if(tenvc2 == 3)
-		cout << "\t\t\t->Ten Vaccine: Astra Zecera."	<< endl;
-	else if(tenvc2 == 4)
-		cout << "\t\t\t->Ten Vaccine: Abdala."	<< endl;
-	else if(tenvc2 == 5)
-		cout << "\t\t\t->Ten Vaccine: Spikevax."	<< endl;
-	else if(tenvc2 == 6)
-		cout << "\t\t\t->Ten Vaccine: Hayat-Vax."	<< endl;
-	else if(tenvc2 == 7)
-		cout << "\t\t\t->Ten Vaccine: SPUTNIK V."	<< endl;
-	else if(tenvc2 == 8)
-		cout << "\t\t\t->Ten Vaccine: Janssen."	<< endl;
+    if (mui1 == 1)
+    {
+        cout << "\t\t\t-> Mui 1: ";
+        TextColor(10);
+        cout << "Da tiem" << endl;
+        dfColor();
+        cout << "\t\t\t-> Ten Vaccine: ";
+        switch (tenvc1)
+        {
+        case 1:
+            TextColor(10);
+            cout << "Vero Cell." << endl;
+            dfColor();
+            break;
+        case 2:
+            TextColor(10);
+            cout << "Pfizer." << endl;
+            dfColor();
+            break;
+        case 3:
+            TextColor(10);
+            cout << "Astra Zecera." << endl;
+            dfColor();
+            break;
+        case 4:
+            TextColor(10);
+            cout << "Abdala." << endl;
+            dfColor();
+            break;
+        case 5:
+            TextColor(10);
+            cout << "Spikevax." << endl;
+            dfColor();
+            break;
+        case 6:
+            TextColor(10);
+            cout << "Hayat-Vax." << endl;
+            dfColor();
+            break;
+        case 7:
+            TextColor(10);
+            cout << "SPUTNIK V." << endl;
+            dfColor();
+            break;
+        case 8:
+            TextColor(10);
+            cout << "Janssen." << endl;
+            dfColor();
+            break;
+        }
+    }
+    else
+    {
+        TextColor(4);
+        cout << "\t\t\tChua tiem Vaccine!" << endl;
+        dfColor();
+    }
+    // if (tenvc1 == 1)
+    //     cout << "\t\t\t->Ten Vaccine: Vero cell." << endl;
+    // else if (tenvc1 == 2)
+    //     cout << "\t\t\t->Ten Vaccine: Pfizer." << endl;
+    // else if (tenvc1 == 3)
+    //     cout << "\t\t\t->Ten Vaccine: Astra Zecera." << endl;
+    // else if (tenvc1 == 4)
+    //     cout << "\t\t\t->Ten Vaccine: Abdala." << endl;
+    // else if (tenvc1 == 5)
+    //     cout << "\t\t\t->Ten Vaccine: Spikevax." << endl;
+    // else if (tenvc1 == 6)
+    //     cout << "\t\t\t->Ten Vaccine: Hayat-Vax." << endl;
+    // else if (tenvc1 == 7)
+    //     cout << "\t\t\t->Ten Vaccine: SPUTNIK V." << endl;
+    // else if (tenvc1 == 8)
+    //     cout << "\t\t\t->Ten Vaccine: Janssen." << endl;
+
+    //     cout << "\t\t\t-> Mui 2:";
+    //     if (mui2 == 0)
+    //     {
+    //         TextColor(4);
+    //         cout << "Chua tiem." << endl;
+    //         dfColor();
+    //     }
+    //     else if (mui2 == 1)
+    //     {
+    //         cout << "da tiem." << endl;
+    //     }
+    //     if (tenvc2 == 1)
+    //         cout << "\t\t\t->Ten Vaccine: Vero cell." << endl;
+    //     else if (tenvc2 == 2)
+    //         cout << "\t\t\t->Ten Vaccine: Pfizer." << endl;
+    //     else if (tenvc2 == 3)
+    //         cout << "\t\t\t->Ten Vaccine: Astra Zecera." << endl;
+    //     else if (tenvc2 == 4)
+    //         cout << "\t\t\t->Ten Vaccine: Abdala." << endl;
+    //     else if (tenvc2 == 5)
+    //         cout << "\t\t\t->Ten Vaccine: Spikevax." << endl;
+    //     else if (tenvc2 == 6)
+    //         cout << "\t\t\t->Ten Vaccine: Hayat-Vax." << endl;
+    //     else if (tenvc2 == 7)
+    //         cout << "\t\t\t->Ten Vaccine: SPUTNIK V." << endl;
+    //     else if (tenvc2 == 8)
+    //         cout << "\t\t\t->Ten Vaccine: Janssen." << endl;
+    // }
+
+    if (mui2 == 1)
+    {
+        cout << "\t\t\t-> Mui 2: ";
+        TextColor(10);
+        cout << "Da tiem" << endl;
+        dfColor();
+        cout << "\t\t\t-> Ten Vaccine: ";
+        switch (tenvc2)
+        {
+        case 1:
+            TextColor(10);
+            cout << "Vero Cell." << endl;
+            dfColor();
+            break;
+        case 2:
+            TextColor(10);
+            cout << "Pfizer." << endl;
+            dfColor();
+            break;
+        case 3:
+            TextColor(10);
+            cout << "Astra Zecera." << endl;
+            dfColor();
+            break;
+        case 4:
+            TextColor(10);
+            cout << "Abdala." << endl;
+            dfColor();
+            break;
+        case 5:
+            TextColor(10);
+            cout << "Spikevax." << endl;
+            dfColor();
+            break;
+        case 6:
+            TextColor(10);
+            cout << "Hayat-Vax." << endl;
+            dfColor();
+            break;
+        case 7:
+            TextColor(10);
+            cout << "SPUTNIK V." << endl;
+            dfColor();
+            break;
+        case 8:
+            TextColor(10);
+            cout << "Janssen." << endl;
+            dfColor();
+            break;
+        }
+    }
+    else
+    {
+        TextColor(4);
+        cout << "\t\t\tChua tiem Vaccine!" << endl;
+        dfColor();
+    }
 }
 
 //CLASS STUDENT
@@ -158,8 +271,8 @@ void Student::Tinhtrang()
 {
     if (mui1 == 1 && mui2 == 1)
         cout << "\t\t\t=> Tinh trang:An toan.";
-    else if(mui1 == 1 && mui2 ==0)
-    	cout << "\t\t\t=> Tinh trang:Tam an toan.";
+    else if (mui1 == 1 && mui2 == 0)
+        cout << "\t\t\t=> Tinh trang:Tam an toan.";
     else
         cout << "\t\t\t=> Tinh trang:Khong an toan";
 }
@@ -200,8 +313,8 @@ void Teacher::Tinhtrang()
 {
     if (mui1 == 1 && mui2 == 1)
         cout << "\t\t\t=> An toan";
-    else if(mui1 == 1 && mui2 ==0)
-    	cout << "\t\t\t=> Tam an toan.";
+    else if (mui1 == 1 && mui2 == 0)
+        cout << "\t\t\t=> Tam an toan.";
     else
         cout << "\t\t\t=> Khong an toan";
 }
