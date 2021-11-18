@@ -13,3 +13,9 @@ void dfColor() // tra color ve mau mac dinh cua console
     color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 15);
 }
+
+void printSpace(int n)
+{
+    for (int i = 0; i < n; i++)
+        std::cout << " ";
+}
