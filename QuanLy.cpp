@@ -8,13 +8,13 @@ using namespace std;
 class Person
 {
 protected:
-    string name, address;
-    int age, mui1, mui2, tenvc1, tenvc2;
+    string address, name;
+    int age, mui1, mui2, tenvc;
 
 public:
     virtual void Nhap();
     virtual void Xuat();
-    virtual void Tinhtrang() = 0;
+    string getName();
 };
 
 void Person::Nhap()
@@ -48,154 +48,167 @@ void Person::Nhap()
     {
         do
         {
-            cout << "-Ten VACCINE: ";
-            cin >> tenvc1;
-            if (tenvc1 < 1 || tenvc1 > 8)
-                cout << "Khong hop le va vui long nhap lai" << endl;
-        } while (tenvc1 < 1 || tenvc1 > 8);
-        do
-        {
             cout << "-Mui 2: ";
             cin >> mui2;
             if (mui2 < 0 || mui2 > 1)
                 cout << "Khong hop le va vui long nhap lai" << endl;
         } while (mui2 < 0 || mui2 > 1);
-        if (mui2 == 1)
+
+        do
         {
-            do
-            {
-                cout << "-Ten VACCINE: ";
-                cin >> tenvc2;
-                if (tenvc2 < 1 || tenvc2 > 8)
-                    cout << "Khong hop le va vui long nhap lai" << endl;
-            } while (tenvc2 < 1 || tenvc2 > 8);
-        }
+            cout << "-Ten VACCINE: ";
+            cin >> tenvc;
+            if (tenvc < 1 || tenvc > 8)
+                cout << "Khong hop le va vui long nhap lai" << endl;
+        } while (tenvc < 1 || tenvc > 8);
     }
     else
         mui2 == 0;
 }
 
+void hienthi()
+{
+    TextColor(12);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    printSpace(80);
+    cout << "BANG DANH SACH" << endl;
+
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+}
+
 void Person::Xuat()
 {
-    fflush(stdin);
-    cout << "\t\t\t-> Ho ten:" << name << endl;
-    cout << "\t\t\t-> Noi o hien tai:" << address << endl;
-    cout << "\t\t\t-> So tuoi:" << age << endl;
+    printSpace(5);
+    TextColor(3);
+    cout << "Ho va Ten: ";
+    dfColor();
+    cout << name;
+    printSpace(6);
+    TextColor(3);
+    cout << "Tuoi: ";
+    dfColor();
+    cout << age;
+    printSpace(5);
+    TextColor(3);
+    cout << "Noi o hien tai: ";
+    dfColor();
+    cout << address;
+    printSpace(10);
+    TextColor(3);
+    cout << "Mui 1: ";
+    dfColor();
     if (mui1 == 1)
     {
-        cout << "\t\t\t-> Mui 1: ";
         TextColor(10);
-        cout << "Da tiem" << endl;
+        cout << "Da tiem";
         dfColor();
-        cout << "\t\t\t-> Ten Vaccine: ";
-        switch (tenvc1)
-        {
-        case 1:
-            TextColor(10);
-            cout << "Vero Cell." << endl;
-            dfColor();
-            break;
-        case 2:
-            TextColor(10);
-            cout << "Pfizer." << endl;
-            dfColor();
-            break;
-        case 3:
-            TextColor(10);
-            cout << "Astra Zecera." << endl;
-            dfColor();
-            break;
-        case 4:
-            TextColor(10);
-            cout << "Abdala." << endl;
-            dfColor();
-            break;
-        case 5:
-            TextColor(10);
-            cout << "Spikevax." << endl;
-            dfColor();
-            break;
-        case 6:
-            TextColor(10);
-            cout << "Hayat-Vax." << endl;
-            dfColor();
-            break;
-        case 7:
-            TextColor(10);
-            cout << "SPUTNIK V." << endl;
-            dfColor();
-            break;
-        case 8:
-            TextColor(10);
-            cout << "Janssen." << endl;
-            dfColor();
-            break;
-        }
     }
     else
     {
         TextColor(4);
-        cout << "\t\t\tChua tiem Vaccine!" << endl;
+        cout << "Chua tiem";
         dfColor();
     }
-
+    printSpace(10);
+    TextColor(3);
+    cout << "Mui 2: ";
+    dfColor();
     if (mui2 == 1)
     {
-        cout << "\t\t\t-> Mui 2: ";
         TextColor(10);
-        cout << "Da tiem" << endl;
+        cout << "Da tiem";
         dfColor();
-        cout << "\t\t\t-> Ten Vaccine: ";
-        switch (tenvc2)
-        {
-        case 1:
-            TextColor(10);
-            cout << "Vero Cell." << endl;
-            dfColor();
-            break;
-        case 2:
-            TextColor(10);
-            cout << "Pfizer." << endl;
-            dfColor();
-            break;
-        case 3:
-            TextColor(10);
-            cout << "Astra Zecera." << endl;
-            dfColor();
-            break;
-        case 4:
-            TextColor(10);
-            cout << "Abdala." << endl;
-            dfColor();
-            break;
-        case 5:
-            TextColor(10);
-            cout << "Spikevax." << endl;
-            dfColor();
-            break;
-        case 6:
-            TextColor(10);
-            cout << "Hayat-Vax." << endl;
-            dfColor();
-            break;
-        case 7:
-            TextColor(10);
-            cout << "SPUTNIK V." << endl;
-            dfColor();
-            break;
-        case 8:
-            TextColor(10);
-            cout << "Janssen." << endl;
-            dfColor();
-            break;
-        }
     }
     else
     {
         TextColor(4);
-        cout << "\t\t\tChua tiem Vaccine!" << endl;
+        cout << "Chua tiem";
         dfColor();
     }
+    printSpace(5);
+    TextColor(3);
+    cout << "Ten Vaccine: ";
+    dfColor();
+    switch (tenvc)
+    {
+    case 1:
+        TextColor(10);
+        cout << "Vero Cell";
+        dfColor();
+        break;
+    case 2:
+        TextColor(10);
+        cout << "Pfizer";
+        dfColor();
+        break;
+    case 3:
+        TextColor(10);
+        cout << "Astra Zecera";
+        dfColor();
+        break;
+    case 4:
+        TextColor(10);
+        cout << "Abdala";
+        dfColor();
+        break;
+    case 5:
+        TextColor(10);
+        cout << "Spikevax";
+        dfColor();
+        break;
+    case 6:
+        TextColor(10);
+        cout << "Hayat-Vax";
+        dfColor();
+        break;
+    case 7:
+        TextColor(10);
+        cout << "SPUTNIK V";
+        dfColor();
+        break;
+    case 8:
+        TextColor(10);
+        cout << "Janssen";
+        dfColor();
+        break;
+    default:
+        TextColor(4);
+        cout << "NONE!";
+        dfColor();
+    }
+    printSpace(5);
+    TextColor(3);
+    cout << "Trang thai: ";
+    dfColor();
+    if (mui1 == 1)
+    {
+        TextColor(10);
+        cout << "An toan";
+        dfColor();
+    }
+    else
+    {
+        TextColor(4);
+        cout << "Khong an toan";
+        dfColor();
+    }
+}
+
+// Ham tach ten, VD: Luong Van Tanh -> getName(): Tanh
+string Person::getName()
+{
+    string getName = name;
+    string ten = "";
+    while (getName[getName.length() - 1] != ' ')
+    {
+        ten.insert(ten.begin() + 0, getName[getName.length() - 1]);
+        getName.pop_back();
+    }
+    getName.pop_back();
+    return ten;
 }
 
 //CLASS STUDENT
@@ -203,17 +216,15 @@ class Student : public Person
 {
 private:
     string study;
-    int ID;
+    long ID;
 
 public:
     void Nhap();
     void Xuat();
-    void Tinhtrang();
     int getID()
     {
         return ID;
     }
-};
 
 void Student::Nhap()
 {
@@ -225,22 +236,14 @@ void Student::Nhap()
     Person::Nhap();
 }
 
-void Student::Tinhtrang()
-{
-    if (mui1 == 1 && mui2 == 1)
-        cout << "\t\t\t=> Tinh trang:An toan.";
-    else if (mui1 == 1 && mui2 == 0)
-        cout << "\t\t\t=> Tinh trang:Tam an toan.";
-    else
-        cout << "\t\t\t=> Tinh trang:Khong an toan";
-}
-
 void Student::Xuat()
 {
-    cout << endl
-         << "**********Thong tin sinh vien va tinh trang tiem chung************" << endl;
-    cout << "\t\t\t-> ID: " << ID << endl;
-    cout << "\t\t\t-> Lop: " << study << endl;
+    TextColor(3); // tim mong mo
+    cout << "ID: " << ID;
+    printSpace(5);
+    cout << "Lop: ";
+    dfColor();
+    cout << study;
     Person::Xuat();
 }
 
@@ -254,7 +257,6 @@ private:
 public:
     void Nhap();
     void Xuat();
-    void Tinhtrang();
 };
 
 void Teacher::Nhap()
@@ -268,22 +270,10 @@ void Teacher::Nhap()
     Person::Nhap();
 }
 
-void Teacher::Tinhtrang()
-{
-    if (mui1 == 1 && mui2 == 1)
-        cout << "\t\t\t=> An toan";
-    else if (mui1 == 1 && mui2 == 0)
-        cout << "\t\t\t=> Tam an toan.";
-    else
-        cout << "\t\t\t=> Khong an toan";
-}
-
 void Teacher::Xuat()
 {
-    cout << endl
-         << "**********Thong tin giao vien va tinh trang tiem chung************" << endl;
-    cout << "\t\t\t-> ID: " << ID << endl;
-    cout << "\t\t\t-> Lop: " << teach << endl;
+    cout << ID;
+    cout << "\t" << teach;
     Person::Xuat();
 }
 //Quan ly danh sach sinh vien
@@ -293,19 +283,15 @@ private:
     vector<Student *> Arr;
 
 public:
-    void NhapDS();
+    void NhapDS(int n);
     void XuatDS();
     void SortByID();
     void DeleteByID();
     void SortByName();
-    void DeleteByName();
 };
 
-void QLStudent::NhapDS()
+void QLStudent::NhapDS(int n)
 {
-    int n;
-    cout << "Nhap n:";
-    cin >> n;
     Student *sv;
     for (int i = 0; i < n; i++)
     {
@@ -317,8 +303,13 @@ void QLStudent::NhapDS()
 
 void QLStudent::XuatDS()
 {
+    hienthi();
+    cout << endl;
     for (int i = 0; i < Arr.size(); i++)
+    {
         Arr.at(i)->Xuat();
+        cout << endl;
+    }
 }
 
 void QLStudent::SortByID()
@@ -344,9 +335,38 @@ void QLStudent::DeleteByID()
     for (int i = 0; i < Arr.size(); i++)
     {
         if (Arr.at(i)->getID() == dID)
+        {
             delete (Arr.at(i));
+            TextColor(10);
+            cout << "Da xoa ID: " << dID << " ra khoi danh sach!" << endl;
+            dfColor();
+        }
         else
+        {
+            TextColor(4);
             cout << "Khong tim thay ID" << endl;
+            dfColor();
+        }
+    }
+    XuatDS();
+}
+
+// Bubble sort
+void QLStudent::SortByName()
+{
+    for (int i = 0; i < Arr.size() - 1; i++)
+    {
+        for (int j = i + 1; j < Arr.size(); j++)
+        {
+            string firstname = Arr.at(i)->getName();
+            string secondname = Arr.at(j)->getName();
+            if (strcmp(firstname.c_str(), secondname.c_str()) > 0)
+            {
+                Student *temp = Arr.at(i);
+                Arr.at(i) = Arr.at(j);
+                Arr.at(j) = temp;
+            }
+        }
     }
     XuatDS();
 }
