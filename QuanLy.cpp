@@ -9,25 +9,14 @@ class Person
 {
 protected:
     string address, name;
-<<<<<<< HEAD
     int age, mui1, mui2, tenvc;
-=======
-    int age, mui1, mui2, tenvc1, tenvc2;
->>>>>>> 3b314d4f505791ceac3a0271d2969d00c12fab4c
 
 public:
     virtual void Nhap();
     virtual void Xuat();
-<<<<<<< HEAD
     string getName();
-=======
-    virtual void Tinhtrang() = 0;
-    string getName()
-    {
-        return name;
-    }
->>>>>>> 3b314d4f505791ceac3a0271d2969d00c12fab4c
 };
+
 void Person::Nhap()
 {
     fflush(stdin);
@@ -357,26 +346,6 @@ void QLStudent::DeleteByID()
             TextColor(4);
             cout << "Khong tim thay ID" << endl;
             dfColor();
-        }
-    }
-    XuatDS();
-}
-
-// Bubble sort
-void QLStudent::SortByName()
-{
-    for (int i = 0; i < Arr.size() - 1; i++)
-    {
-        for (int j = i + 1; j < Arr.size(); j++)
-        {
-            string firstname = Arr.at(i)->getName();
-            string secondname = Arr.at(j)->getName();
-            if (strcmp(firstname.c_str(), secondname.c_str()) > 0)
-            {
-                Student *temp = Arr.at(i);
-                Arr.at(i) = Arr.at(j);
-                Arr.at(j) = temp;
-            }
         }
     }
     XuatDS();
