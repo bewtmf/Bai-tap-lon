@@ -1,12 +1,13 @@
 #include <iostream>
-#include "QuanLy.cpp"
+#include "Menu.cpp"
+
+using namespace std;
 
 int main()
 {
-    QLStudent a;
-    a.NhapDS();
-    a.XuatDS();
-    cout << "\nSap xep: " << endl;
-    a.SortByID();
-    a.DeleteByID();
+       char choose;
+       dangnhap();
+       system("cls");
+       Menu(choose);
+       return 0;
 }

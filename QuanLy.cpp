@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "TextColor.h"
+#include "login.cpp"
+#include <fstream>
 using namespace std;
 
 // CLASS PERSON
@@ -15,6 +16,10 @@ public:
     virtual void Nhap();
     virtual void Xuat();
     string getName();
+    string getFullName()
+    {
+        return name;
+    }
 };
 
 void Person::Nhap()
@@ -31,9 +36,13 @@ void Person::Nhap()
         if (age < 12 || age > 150)
             cout << "Khong hop le de tiem va vui lop nhap lai:" << endl;
     } while (age < 12 || age > 150);
-
+    TextColor(4);
     cout << "*Ghi chu:" << endl;
-    cout << "*****Nhap 0 neu chua tiem va nhap 1 neu da tiem ( nhap 1 den 8 de chon VACCINE)!*****" << endl;
+    dfColor();
+    TextColor(10);
+    cout << "----------Nhap 0 neu chua tiem va nhap 1 neu da tiem----------" << endl;
+    cout << "----------Nhap 1 den 8 de chon VACCINE!----------" << endl;
+    dfColor();
     cout << "(1)Vero cell\t(2) Pfizer\t(3) Astra Zecera\t(4)Abdala" << endl
          << "(5) Spikevax\t(6) Hayat - Vax\t(7) SPUTNIK V\t(8) Janssen." << endl;
     do
@@ -64,19 +73,6 @@ void Person::Nhap()
     }
     else
         mui2 == 0;
-}
-
-void hienthi()
-{
-    TextColor(12);
-    cout << "---------------------------------------------------------------------------------------------------------------------"
-         << "----------------------------------------------------------------------" << endl;
-    printSpace(80);
-    cout << "BANG DANH SACH" << endl;
-
-    cout << "---------------------------------------------------------------------------------------------------------------------"
-         << "----------------------------------------------------------------------" << endl;
-    dfColor();
 }
 
 void Person::Xuat()
@@ -216,20 +212,32 @@ class Student : public Person
 {
 private:
     string study;
-    long ID;
+    string ID;
 
 public:
     void Nhap();
     void Xuat();
-    int getID()
+    string getID()
     {
         return ID;
     }
+};
 
 void Student::Nhap()
 {
-    cout << "-Nhap ID sinh vien (ID): ";
-    cin >> ID;
+    fflush(stdin);
+    cout << "\n------------------------------------" << endl;
+    do
+    {
+        cout << "-Nhap ID sinh vien (Khong qua 10 ky tu!): ";
+        getline(cin, ID);
+        if (ID.length() > 10)
+        {
+            TextColor(4);
+            cout << "Vuot qua 10 ky tu!!" << endl;
+            dfColor();
+        }
+    } while (ID.length() > 10);
     fflush(stdin);
     cout << "-Hoc lop: ";
     getline(cin, study);
@@ -252,18 +260,23 @@ class Teacher : public Person
 {
 private:
     string teach;
-    int ID;
+    string ID;
 
 public:
     void Nhap();
     void Xuat();
+    string getID()
+    {
+        return ID;
+    }
 };
 
 void Teacher::Nhap()
 {
-    cout << "\n*********************" << endl;
-    cout << "\n-Nhap ID giao vien (ID): ";
-    cin >> ID;
+    fflush(stdin);
+    cout << "\n------------------------------------" << endl;
+    cout << "\n-Nhap ID giang vien (ID): ";
+    getline(cin, ID);
     fflush(stdin);
     cout << "-Day lop: ";
     getline(cin, teach);
@@ -272,10 +285,26 @@ void Teacher::Nhap()
 
 void Teacher::Xuat()
 {
-    cout << ID;
-    cout << "\t" << teach;
+    TextColor(3);
+    cout << "ID: " << ID;
+    printSpace(5);
+    cout << "Day lop: ";
+    dfColor();
+    cout << teach;
     Person::Xuat();
 }
+
+void hienthi()
+{
+    TextColor(12);
+    printSpace(80);
+    cout << "BANG DANH SACH" << endl;
+
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+}
+
 //Quan ly danh sach sinh vien
 class QLStudent
 {
@@ -286,8 +315,10 @@ public:
     void NhapDS(int n);
     void XuatDS();
     void SortByID();
+    void FindByID();
     void DeleteByID();
     void SortByName();
+    void FindByName();
 };
 
 void QLStudent::NhapDS(int n)
@@ -310,6 +341,10 @@ void QLStudent::XuatDS()
         Arr.at(i)->Xuat();
         cout << endl;
     }
+    TextColor(12);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
 }
 
 void QLStudent::SortByID()
@@ -324,31 +359,70 @@ void QLStudent::SortByID()
                 Arr.at(j) = temp;
             }
     }
+    TextColor(10);
+    cout << "Sap xep thanh cong!" << endl;
+    dfColor();
     XuatDS();
+}
+
+void QLStudent::FindByID()
+{
+    int count = 0;
+    string fID;
+    fflush(stdin);
+    cout << "Nhap ID can tim: ";
+    getline(cin, fID);
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+    for (int i = 0; i < Arr.size(); i++)
+    {
+        if (Arr.at(i)->getID() == fID)
+        {
+            Arr.at(i)->Xuat();
+            cout << endl;
+            count++;
+        }
+    }
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+    if (count == 0)
+    {
+        TextColor(4);
+        cout << "Khong co ID '";
+        cout << fID;
+        cout << "' trong danh sach!" << endl;
+        dfColor();
+    }
 }
 
 void QLStudent::DeleteByID()
 {
-    int dID;
+    int count = 0;
+    string dID;
+    fflush(stdin);
     cout << "Nhap ID muon xoa: ";
-    cin >> dID;
+    getline(cin, dID);
     for (int i = 0; i < Arr.size(); i++)
     {
         if (Arr.at(i)->getID() == dID)
         {
-            delete (Arr.at(i));
+            Arr.erase(Arr.begin() + i);
             TextColor(10);
             cout << "Da xoa ID: " << dID << " ra khoi danh sach!" << endl;
             dfColor();
-        }
-        else
-        {
-            TextColor(4);
-            cout << "Khong tim thay ID" << endl;
-            dfColor();
+            count++;
         }
     }
-    XuatDS();
+    if (count == 0)
+    {
+        TextColor(4);
+        cout << "Khong tim thay ID!" << endl;
+        dfColor();
+    }
 }
 
 // Bubble sort
@@ -369,4 +443,211 @@ void QLStudent::SortByName()
         }
     }
     XuatDS();
+}
+
+void QLStudent::FindByName()
+{
+    int count = 0;
+    string fName;
+    fflush(stdin);
+    cout << "Nhap ten sinh vien can tim: ";
+    getline(cin, fName);
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+    for (int i = 0; i < Arr.size(); i++)
+    {
+        if (Arr.at(i)->getName() == fName || Arr.at(i)->getFullName() == fName)
+        {
+            Arr.at(i)->Xuat();
+            cout << endl;
+            count++;
+        }
+    }
+    if (count == 0)
+    {
+        TextColor(4);
+        cout << "Khong co ten '";
+        cout << fName;
+        cout << "' trong danh sach!" << endl;
+        dfColor();
+    }
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+}
+
+class QLTeacher
+{
+private:
+    vector<Teacher *> Arr;
+
+public:
+    void NhapDS(int n);
+    void XuatDS();
+    void SortByID();
+    void FindByID();
+    void DeleteByID();
+    void SortByName();
+    void FindByName();
+};
+
+void QLTeacher::NhapDS(int n)
+{
+    Teacher *gv;
+    for (int i = 0; i < n; i++)
+    {
+        gv = new Teacher;
+        gv->Nhap();
+        Arr.push_back(gv);
+    }
+}
+
+void QLTeacher::XuatDS()
+{
+    hienthi();
+    cout << endl;
+    for (int i = 0; i < Arr.size(); i++)
+    {
+        Arr.at(i)->Xuat();
+        cout << endl;
+    }
+    TextColor(12);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+}
+
+void QLTeacher::SortByID()
+{
+    for (int i = 0; i < Arr.size() - 1; i++)
+    {
+        for (int j = i + 1; j < Arr.size(); j++)
+            if (Arr.at(i)->getID() > Arr.at(j)->getID())
+            {
+                Teacher *temp = Arr.at(i);
+                Arr.at(i) = Arr.at(j);
+                Arr.at(j) = temp;
+            }
+    }
+    TextColor(10);
+    cout << "Sap xep thanh cong!" << endl;
+    dfColor();
+    XuatDS();
+}
+
+void QLTeacher::FindByID()
+{
+    int count = 0;
+    string fID;
+    fflush(stdin);
+    cout << "Nhap ID can tim: ";
+    getline(cin, fID);
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+    for (int i = 0; i < Arr.size(); i++)
+    {
+        if (Arr.at(i)->getID() == fID)
+        {
+            Arr.at(i)->Xuat();
+            cout << endl;
+            count++;
+        }
+    }
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+    if (count == 0)
+    {
+        TextColor(4);
+        cout << "Khong co ID '";
+        cout << fID;
+        cout << "' trong danh sach!" << endl;
+        dfColor();
+    }
+}
+
+void QLTeacher::DeleteByID()
+{
+    int count = 0;
+    string dID;
+    fflush(stdin);
+    cout << "Nhap ID muon xoa: ";
+    getline(cin, dID);
+    for (int i = 0; i < Arr.size(); i++)
+    {
+        if (Arr.at(i)->getID() == dID)
+        {
+            Arr.erase(Arr.begin() + i);
+            TextColor(10);
+            cout << "Da xoa ID: " << dID << " ra khoi danh sach!" << endl;
+            dfColor();
+            count++;
+        }
+    }
+    if (count == 0)
+    {
+        TextColor(4);
+        cout << "Khong tim thay ID!" << endl;
+        dfColor();
+    }
+}
+
+// Bubble sort
+void QLTeacher::SortByName()
+{
+    for (int i = 0; i < Arr.size() - 1; i++)
+    {
+        for (int j = i + 1; j < Arr.size(); j++)
+        {
+            string firstname = Arr.at(i)->getName();
+            string secondname = Arr.at(j)->getName();
+            if (strcmp(firstname.c_str(), secondname.c_str()) > 0)
+            {
+                Teacher *temp = Arr.at(i);
+                Arr.at(i) = Arr.at(j);
+                Arr.at(j) = temp;
+            }
+        }
+    }
+    XuatDS();
+}
+
+void QLTeacher::FindByName()
+{
+    int count = 0;
+    string fName;
+    fflush(stdin);
+    cout << "Nhap ten giang vien can tim: ";
+    getline(cin, fName);
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
+    for (int i = 0; i < Arr.size(); i++)
+    {
+        if (Arr.at(i)->getName() == fName || Arr.at(i)->getFullName() == fName)
+        {
+            Arr.at(i)->Xuat();
+            cout << endl;
+            count++;
+        }
+    }
+    if (count == 0)
+    {
+        TextColor(4);
+        cout << "Khong co ten '";
+        cout << fName;
+        cout << "' trong danh sach!" << endl;
+        dfColor();
+    }
+    TextColor(3);
+    cout << "---------------------------------------------------------------------------------------------------------------------"
+         << "----------------------------------------------------------------------" << endl;
+    dfColor();
 }
