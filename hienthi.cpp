@@ -137,4 +137,9 @@ void ChuongTrinh()
     cout << "   #    ### ####### #     #";
 
     cout << "\n\n";
+    TextColor(10);
+    cout << endl
+         << "Nhan phim bat ky de bat dau chuong trinh.";
+    getch();
+    system("cls");
 }

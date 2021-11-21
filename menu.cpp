@@ -26,13 +26,6 @@ void Choose()
 
 void Menu(char choose)
 {
-	printSpace(50);
-	ChuongTrinh();
-	TextColor(10);
-	cout << endl
-		 << "Nhan phim bat ky de bat dau chuong trinh.";
-	getch();
-	system("cls");
 	dfColor();
 	QLStudent sv;
 	QLTeacher gv;

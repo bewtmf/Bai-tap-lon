@@ -6,6 +6,7 @@ using namespace std;
 int main()
 {
        char choose;
+       ChuongTrinh();
        dangnhap();
        system("cls");
        Menu(choose);
