@@ -65,7 +65,7 @@ void login()
     cout << "PASSWORD :";
     cin >> pass;
 
-    ifstream input("database.txt");
+    ifstream input("database.txt"); // mo file database.txt de doc user va pass
     while (input >> u >> p)
     {
         if (u == user && p == pass)
@@ -105,7 +105,7 @@ void registr()
     cout << "\nDien mat khau :";
     cin >> regpass;
 
-    ofstream reg("database.txt", ios::app);
+    ofstream reg("database.txt", ios::app); // mo file database.txt che do append them "reguser" va "regpass" vao cuoi file
     reg << reguser << ' ' << regpass << endl;
     system("cls");
     TextColor(10);
@@ -135,7 +135,7 @@ void forgot()
         cout << "\nNhap ten dang nhap ma ban nho : ";
         cin >> searchuser;
 
-        ifstream searchu("data\\database.txt");
+        ifstream searchu("database.txt"); // mo file database.txt de doc su va sp
         while (searchu >> su >> sp)
         {
             if (su == searchuser)
@@ -173,7 +173,7 @@ void forgot()
         cout << "\nNhap mat khau ma ban nho : ";
         cin >> searchpass;
 
-        ifstream searchp("data\\database.txt");
+        ifstream searchp("database.txt");
         while (searchp >> su2 >> sp2)
         {
             if (sp2 == searchpass)

@@ -11,6 +11,7 @@ class Person
 protected:
     string address, name;
     int age, mui1, mui2, tenvc;
+    int level;
 
 public:
     virtual void Nhap();
@@ -29,9 +30,28 @@ void Person::Nhap()
     getline(cin, name);
     cout << "-Nhap noi o hien tai: ";
     getline(cin, address);
+    // Cap do khu vuc
+    TextColor(3);
+    cout << "Level 1: Nguy co thap - Vung xanh." << endl;
+    cout << "Level 2: Nguy co trung binh - Vung vang." << endl;
+    cout << "Level 3: Nguy co cao - Vung cam." << endl;
+    cout << "Level 4: Nguy co rat cao - Vung do." << endl;
+    dfColor();
     do
     {
-        cout << "-Tuoi:";
+        cout << "Muc do canh bao: ";
+        cin >> level;
+        if (level < 1 || level > 4)
+        {
+            TextColor(4);
+            cout << "Khong hop le vui long nhap lai!" << endl;
+            dfColor();
+        }
+
+    } while (level < 1 || level > 4);
+    do
+    {
+        cout << "-Tuoi: ";
         cin >> age;
         if (age < 12 || age > 150)
             cout << "Khong hop le de tiem va vui lop nhap lai:" << endl;
@@ -45,6 +65,8 @@ void Person::Nhap()
     dfColor();
     cout << "(1)Vero cell\t(2) Pfizer\t(3) Astra Zecera\t(4)Abdala" << endl
          << "(5) Spikevax\t(6) Hayat - Vax\t(7) SPUTNIK V\t(8) Janssen." << endl;
+
+    // Nhap vaccine
     do
     {
         cout << "-Mui 1: ";
@@ -177,19 +199,32 @@ void Person::Xuat()
     }
     printSpace(5);
     TextColor(3);
-    cout << "Trang thai: ";
+    cout << "Cap do khu vuc: ";
     dfColor();
-    if (mui1 == 1)
+
+    // Trang thai
+    switch (level)
     {
+    case 1:
         TextColor(10);
-        cout << "An toan";
+        cout << "Vung xanh!";
         dfColor();
-    }
-    else
-    {
+        break;
+    case 2:
+        TextColor(14);
+        cout << "Vung vang!";
+        dfColor();
+        break;
+    case 3:
+        TextColor(12);
+        cout << "Vung cam!";
+        dfColor();
+        break;
+    case 4:
         TextColor(4);
-        cout << "Khong an toan";
+        cout << "Vung do!";
         dfColor();
+        break;
     }
 }
 
@@ -207,7 +242,7 @@ string Person::getName()
     return ten;
 }
 
-//CLASS STUDENT
+// CLASS STUDENT
 class Student : public Person
 {
 private:
@@ -255,7 +290,7 @@ void Student::Xuat()
     Person::Xuat();
 }
 
-//CLASS TEACHER
+// CLASS TEACHER
 class Teacher : public Person
 {
 private:
@@ -305,7 +340,7 @@ void hienthi()
     dfColor();
 }
 
-//Quan ly danh sach sinh vien
+// Quan ly danh sach sinh vien
 class QLStudent
 {
 private:
