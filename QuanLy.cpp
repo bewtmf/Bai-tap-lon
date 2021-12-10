@@ -11,7 +11,7 @@ class Person
 protected:
     string address, name;
     int age, mui1, mui2, tenvc;
-    int level;
+    int level; // them bien level - chinh sua bai tap lon
 
 public:
     virtual void Nhap();
@@ -30,7 +30,7 @@ void Person::Nhap()
     getline(cin, name);
     cout << "-Nhap noi o hien tai: ";
     getline(cin, address);
-    // Cap do khu vuc
+    // Cap do khu vuc - chinh sua bai tap lon
     TextColor(3);
     cout << "Level 1: Nguy co thap - Vung xanh." << endl;
     cout << "Level 2: Nguy co trung binh - Vung vang." << endl;
@@ -202,7 +202,7 @@ void Person::Xuat()
     cout << "Cap do khu vuc: ";
     dfColor();
 
-    // Trang thai
+    // Trang thai - chinh sua bai tap lon
     switch (level)
     {
     case 1:
