@@ -1,3 +1,7 @@
+// Nhóm 24
+// Nguyễn Hưng Thịnh - 6151071105
+// Lương Văn Tánh - 6151071096
+// Nguyễn Tấn Tài - 6151071022
 #include <iostream>
 #include "TextColor.h"
 #include <Windows.h>
@@ -25,8 +29,8 @@ void ChuongTrinh()
     cout << "#    #  #     # #     # #    ##";
     gotoxy(30, 11);
     cout << " #### #  #####  #     # #     #";
-    //62
-    // LY
+    // 62
+    //  LY
     gotoxy(72, 5);
     cout << "#       #     #";
     gotoxy(72, 6);
@@ -42,7 +46,7 @@ void ChuongTrinh()
     gotoxy(72, 11);
     cout << "#######    #   ";
 
-    //SINH
+    // SINH
     do
     {
         x1 = rand() % 6 + 1;
@@ -63,8 +67,8 @@ void ChuongTrinh()
     gotoxy(20, 19);
     cout << " #####  ### #     # #     #";
 
-    //48
-    // VIEN
+    // 48
+    //  VIEN
     gotoxy(58, 13);
     cout << "#     # ### ####### #     #";
     gotoxy(58, 14);
@@ -80,8 +84,8 @@ void ChuongTrinh()
     gotoxy(58, 19);
     cout << "   #    ### ####### #     #";
 
-    //76
-    //VA
+    // 76
+    // VA
     TextColor(7);
     gotoxy(48, 21);
     cout << "#     #    #   ";
@@ -98,7 +102,7 @@ void ChuongTrinh()
     gotoxy(48, 27);
     cout << "   #    #     #";
 
-    //GIANG
+    // GIANG
     do
     {
         x2 = rand() % 6 + 1;
@@ -120,7 +124,7 @@ void ChuongTrinh()
     cout << " #####  ### #     # #     #  ##### ";
 
     // 56
-    //VIEN
+    // VIEN
     gotoxy(66, 29);
     cout << "#     # ### ####### #     #";
     gotoxy(66, 30);
